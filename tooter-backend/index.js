@@ -6,16 +6,17 @@ const { SubscriptionServer } = require("subscriptions-transport-ws");
 const express = require("express");
 const http = require("http");
 const mongoose = require("mongoose");
+require('dotenv').config()
 
 const User = require("./models/user");
-const MONGODB_URI =
-  "mongodb+srv://fullstack:fullstack10@cluster0.zqibevf.mongodb.net/tooterApp?retryWrites=true&w=majority";
+const MONGODB_URI = process.env.MONGODB_URI
+  
 const jwt = require("jsonwebtoken");
 
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 
-const JWT_SECRET = "TEST_SECRET_KEY";
+const JWT_SECRET = process.env.JWT_SECRET
 
 console.log("connecting to", MONGODB_URI);
 
@@ -32,6 +33,7 @@ mongoose.set("debug", true);
 
 const start = async () => {
   const app = express();
+  app.use(express.static('build'))
   const httpServer = http.createServer(app);
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
@@ -79,7 +81,7 @@ const start = async () => {
     path: "/",
   });
 
-  const PORT = 4000;
+  const PORT = process.env.PORT || 4000;
 
   httpServer.listen(PORT, () =>
     console.log(`Server is now running on http://localhost:${PORT}`)

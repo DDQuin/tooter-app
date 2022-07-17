@@ -1,6 +1,6 @@
 const { UserInputError, AuthenticationError } = require("apollo-server");
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "TEST_SECRET_KEY";
+const JWT_SECRET = process.env.JWT_SECRET;
 const { PubSub } = require("graphql-subscriptions");
 const Toot = require("./models/toot");
 const pubsub = new PubSub();
