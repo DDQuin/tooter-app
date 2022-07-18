@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "node index.js",
-    "build:ui": "rm -rf build && cd ../tooter-frontend/ && npm run build && cp -r build ../tooter-backend"
+    "start": "node index.js",
+    "build:ui": "rm -rf build && cd tooter-frontend && npm run build && cp -r build .."
   },
   "author": "DDQuin",
   "license": "ISC",
