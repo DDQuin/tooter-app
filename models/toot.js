@@ -7,6 +7,7 @@ const schema = new mongoose.Schema({
     unique: true,
     minlength: 2,
   },
-});
+  
+}, { timestamps: true });
 
 module.exports = mongoose.model("Toot", schema);
