@@ -10,6 +10,12 @@ const schema = new mongoose.Schema({
     type: String,
     reqiured: true,
   },
+  toots: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Toot',
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", schema);

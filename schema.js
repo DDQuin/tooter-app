@@ -5,6 +5,7 @@ type Toot {
   content: String!
   id: ID!
   createdAt: String!
+  user: User!
 }
 
 type Query {
@@ -16,6 +17,7 @@ type Query {
 type User {
   username: String!
   id: ID!
+  toots: [Toot!]!
 }
 
 type Token {

@@ -62,7 +62,7 @@ const start = async () => {
       }
       return { currentUser: null}
     } catch (ex) {
-      console.log(ex)
+     // console.log(ex)
       return { currentUser: null };
     }
     },

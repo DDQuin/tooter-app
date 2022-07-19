@@ -19,6 +19,16 @@ const resolvers = {
       return context.currentUser;
     },
   },
+  Toot: {
+    user: async (root) => await User.findById(root.user),
+  },
+  User: {
+    toots: async (root) => {
+      const userWithToots = await User.findById(root.id).populate("toots");
+      const toots = userWithToots.toots
+      return toots;
+    },
+  },
   Mutation: {
     addToot: async (root, args, context) => {
       const currentUser = context.currentUser;
@@ -31,15 +41,18 @@ const resolvers = {
         throw new ValidationError("Toot must be unique!");
       }
 
-      const toot = new Toot({ ...args})
+      const toot = new Toot({content: args.content, user: currentUser.id})
       try {
         const savedToot = await toot.save();
+        currentUser.toots = currentUser.toots.concat(savedToot._id);
+        await currentUser.save();
+        return toot;
       } catch (error) {
         throw new UserInputError(error.message, {
           invalidArgs: args,
         });
       }
-      return toot;
+      
     },
     createUser: async (root, args) => {
       const { username, password } = args;

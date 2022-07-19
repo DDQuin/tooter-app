@@ -7,6 +7,10 @@ const schema = new mongoose.Schema({
     unique: true,
     minlength: 2,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   
 }, { timestamps: true });
 
