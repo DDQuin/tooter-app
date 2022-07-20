@@ -10,12 +10,28 @@ const schema = new mongoose.Schema({
     type: String,
     reqiured: true,
   },
+  avatar: {
+    type: String,
+  },
   toots: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Toot',
     },
   ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  followedBy: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  
 });
 
 module.exports = mongoose.model("User", schema);

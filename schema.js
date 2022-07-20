@@ -18,6 +18,9 @@ type User {
   username: String!
   id: ID!
   toots: [Toot!]!
+  avatar: String
+  following: [User!]!
+  followedBy: [User!]!
 }
 
 type Token {
@@ -30,6 +33,8 @@ type Mutation {
   ): Toot
   createUser(username: String!, password: String!): User
   login(username: String!, password: String!): Token
+  setAvatar(url: String!): User
+  followUser(id: ID!): User
 }
 `;
 
