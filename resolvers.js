@@ -4,6 +4,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const { PubSub } = require("graphql-subscriptions");
 const Toot = require("./models/toot");
 const User = require("./models/user");
+const { ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 const pubsub = new PubSub();
 
@@ -27,6 +28,16 @@ const resolvers = {
       const userWithToots = await User.findById(root.id).populate("toots");
       const toots = userWithToots.toots
       return toots;
+    },
+    following: async (root) => {
+      const userWithFollwing = await User.findById(root.id).populate("following");
+      const following = userWithFollwing.following
+      return following
+    },
+    followedBy: async (root) => {
+      const userWithFollowedBy = await User.findById(root.id).populate("followedBy");
+      const followedBy = userWithFollowedBy.followedBy
+      return followedBy
     },
   },
   Mutation: {
@@ -52,6 +63,44 @@ const resolvers = {
           invalidArgs: args,
         });
       }
+      
+    },
+    setAvatar: async (root, args, context) => {
+      const { url } = args
+      const currentUser = context.currentUser;
+      if (!currentUser) {
+        throw new AuthenticationError("not authenticated");
+      }
+      currentUser.avatar = url
+      await currentUser.save()
+      return currentUser
+      
+    },
+    followUser: async (root, args, context) => {
+      const { id } = args
+      const currentUser = context.currentUser;
+      if (!currentUser) {
+        throw new AuthenticationError("not authenticated");
+      }
+
+      const userToFollow = await User.findById(id)
+      if (!userToFollow) {
+        throw new ValidationError("User id doesn't exist!");
+      }
+      if (id === currentUser.id) {
+        throw new UserInputError("You can't follow yourself");
+      }
+      if (userToFollow.followedBy.includes(currentUser.id)) {
+        console.log("unfollows")
+        await User.updateOne( { _id: userToFollow._id }, { $pull: { followedBy: currentUser._id }})
+        await User.updateOne( { _id: currentUser._id }, { $pull: { following: userToFollow._id }})
+        return currentUser
+      }
+      currentUser.following = currentUser.following.concat(userToFollow.id);
+      await currentUser.save()
+      userToFollow.followedBy = userToFollow.followedBy.concat(currentUser.id)
+      await userToFollow.save()
+      return currentUser
       
     },
     createUser: async (root, args) => {
