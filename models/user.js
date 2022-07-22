@@ -19,6 +19,12 @@ const schema = new mongoose.Schema({
       ref: 'Toot',
     },
   ],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
   following: [
     {
       type: mongoose.Schema.Types.ObjectId,

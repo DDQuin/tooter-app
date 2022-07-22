@@ -4,6 +4,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const { PubSub } = require("graphql-subscriptions");
 const Toot = require("./models/toot");
 const User = require("./models/user");
+const Comment = require("./models/comment");
 const { ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 const pubsub = new PubSub();
@@ -16,18 +17,35 @@ const resolvers = {
     allUsers: async (root, args) => {
       return User.find({});
     },
+    allComments: async (root, args) => {
+      return Comment.find({});
+    },
     me: (root, args, context) => {
       return context.currentUser;
     },
   },
   Toot: {
     user: async (root) => await User.findById(root.user),
+    comments: async (root) => {
+      const tootWithComments = await Toot.findById(root.id).populate("comments");
+      const comments = tootWithComments.comments
+      return comments;
+    },
+  },
+  Comment: {
+    user: async (root) => await User.findById(root.user),
+    toot: async (root) => await Toot.findById(root.toot),
   },
   User: {
     toots: async (root) => {
       const userWithToots = await User.findById(root.id).populate("toots");
       const toots = userWithToots.toots
       return toots;
+    },
+    comments: async (root) => {
+      const userWithComments = await User.findById(root.id).populate("comments");
+      const comments = userWithComments.comments
+      return comments;
     },
     following: async (root) => {
       const userWithFollwing = await User.findById(root.id).populate("following");
@@ -64,6 +82,38 @@ const resolvers = {
         });
       }
       
+    },
+    createComment: async (root, args, context) => {
+      const currentUser = context.currentUser;
+      if (!currentUser) {
+        throw new AuthenticationError("not authenticated");
+      }
+      const { tootId } = args
+     /* const existingToot = await Toot.findOne({ content: args.content });
+      if (existingToot) {
+        throw new ValidationError("Toot must be unique!");
+      }*/
+
+      const tootToCommentOn = await Toot.findById(tootId)
+      if (!tootToCommentOn) {
+        throw new ValidationError("Toot doesn't exist!");
+      }
+
+      const comment = new Comment({content: args.content, user: currentUser.id, toot: tootId})
+
+      try {
+        const savedComment = await comment.save();
+        tootToCommentOn.comments = tootToCommentOn.comments.concat(savedComment._id)
+        currentUser.comments = currentUser.comments.concat(savedComment._id)
+        await tootToCommentOn.save()
+        await currentUser.save()
+        return savedComment;
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args,
+        });
+      }
+
     },
     setAvatar: async (root, args, context) => {
       const { url } = args
