@@ -7,19 +7,25 @@ type Toot {
   createdAt: String!
   user: User!
   comments: [Comment!]!
+  likes: [Like!]!
 }
 
 type Comment {
   content: String!
   user: User!
   toot: Toot! 
+}
 
+type Like {
+  user: User!
+  toot: Toot! 
 }
 
 type Query {
   allToots: [Toot!]!
   allUsers: [User!]!
   allComments: [Comment!]!
+  allLikes: [Like!]!
   me: User
 }
 
@@ -31,6 +37,7 @@ type User {
   following: [User!]!
   followedBy: [User!]!
   comments: [Comment!]!
+  likes: [Like!]!
 }
 
 type Token {
@@ -43,6 +50,7 @@ type Mutation {
   ): Toot
   createUser(username: String!, password: String!): User
   createComment(tootId: ID!, content: String!): Comment
+  likeToot(tootId: ID!): ID
   login(username: String!, password: String!): Token
   setAvatar(url: String!): User
   followUser(id: ID!): User

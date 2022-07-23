@@ -5,6 +5,7 @@ const { PubSub } = require("graphql-subscriptions");
 const Toot = require("./models/toot");
 const User = require("./models/user");
 const Comment = require("./models/comment");
+const Like = require("./models/like");
 const { ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 const pubsub = new PubSub();
@@ -20,6 +21,9 @@ const resolvers = {
     allComments: async (root, args) => {
       return Comment.find({});
     },
+    allLikes: async (root, args) => {
+      return Like.find({});
+    },
     me: (root, args, context) => {
       return context.currentUser;
     },
@@ -31,8 +35,17 @@ const resolvers = {
       const comments = tootWithComments.comments
       return comments;
     },
+    likes: async (root) => {
+      const tootWithLikes = await Toot.findById(root.id).populate("likes");
+      const likes = tootWithLikes.likes
+      return likes;
+    },
   },
   Comment: {
+    user: async (root) => await User.findById(root.user),
+    toot: async (root) => await Toot.findById(root.toot),
+  },
+  Like: {
     user: async (root) => await User.findById(root.user),
     toot: async (root) => await Toot.findById(root.toot),
   },
@@ -46,6 +59,11 @@ const resolvers = {
       const userWithComments = await User.findById(root.id).populate("comments");
       const comments = userWithComments.comments
       return comments;
+    },
+    likes: async (root) => {
+      const tootWithLikes = await User.findById(root.id).populate("likes");
+      const likes = tootWithLikes.likes
+      return likes;
     },
     following: async (root) => {
       const userWithFollwing = await User.findById(root.id).populate("following");
@@ -108,6 +126,44 @@ const resolvers = {
         await tootToCommentOn.save()
         await currentUser.save()
         return savedComment;
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args,
+        });
+      }
+
+    },
+    likeToot: async (root, args, context) => {
+      const currentUser = context.currentUser;
+      if (!currentUser) {
+        throw new AuthenticationError("not authenticated");
+      }
+      const { tootId } = args
+
+      const tootToLike = await Toot.findById(tootId)
+      if (!tootToLike) {
+        throw new ValidationError("Toot doesn't exist!");
+      }
+      for (let likeId of tootToLike.likes) {
+        if (currentUser.likes.includes(likeId)) {
+          console.log("removing like ", likeId)
+          tootToLike.likes = tootToLike.likes.filter(tootLike => tootLike !== likeId)
+          currentUser.likes = currentUser.likes.filter(userLike => userLike !== likeId)
+          await tootToLike.save()
+          await currentUser.save()
+          await Like.findByIdAndDelete(likeId)
+          return likeId
+        }
+      }
+      const like = new Like({user: currentUser.id, toot: tootId})
+
+      try {
+        const savedLike = await like.save();
+        tootToLike.likes = tootToLike.likes.concat(savedLike._id)
+        currentUser.likes = currentUser.likes.concat(savedLike._id)
+        await tootToLike.save()
+        await currentUser.save()
+        return like.id
       } catch (error) {
         throw new UserInputError(error.message, {
           invalidArgs: args,
