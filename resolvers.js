@@ -182,6 +182,17 @@ const resolvers = {
       return currentUser
       
     },
+    setName: async (root, args, context) => {
+      const { name } = args
+      const currentUser = context.currentUser;
+      if (!currentUser) {
+        throw new AuthenticationError("not authenticated");
+      }
+      currentUser.name = name
+      await currentUser.save()
+      return currentUser
+      
+    },
     followUser: async (root, args, context) => {
       const { id } = args
       const currentUser = context.currentUser;
@@ -210,9 +221,9 @@ const resolvers = {
       
     },
     createUser: async (root, args) => {
-      const { username, password } = args;
-      if (username.length < 3 || password.length < 3) {
-        throw new UserInputError('Password or user mush be atleast 3 characters!', {
+      const { username, password, name } = args;
+      if (username.length < 3 || password.length < 3 || name.length < 3) {
+        throw new UserInputError('Password or user must be atleast 3 characters!', {
           invalidArgs: args,
         });
       }
@@ -224,7 +235,7 @@ const resolvers = {
       const saltRounds = 10;
       const passwordHash = await bcrypt.hash(password, saltRounds);
       const user = new User({
-        username, passwordHash
+        username, passwordHash, name
       });
 
       return user.save().catch((error) => {
