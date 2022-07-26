@@ -16,7 +16,9 @@ const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 
 
-console.log("connecting to ", config.MONGODB_URI);
+console.log("connecting to  ", config.MONGODB_URI);
+console.log("connecting to  ", config.MONGODB_URI);
+console.log("connecting to  ", config.MONGODB_URI);
 
 mongoose
   .connect(config.MONGODB_URI)
