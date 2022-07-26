@@ -1,0 +1,48 @@
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+env:
+  MONGODB_URI: ${{secrets.MONGODB_URI}}
+  TEST_MONGODB_URI: ${{secrets.TEST_MONGODB_URI}}
+  PORT: ${{secrets.PORT}}
+  JWT_SECRET: ${{secrets.JWT_SECRET}}
+
+jobs:
+  simple_deployment_pipeline:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: npm install
+        run: npm install && cd tooter-frontend && npm install
+      - name: build
+        run: npm run build:ui
+      - name: deploy to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "tooter-app"
+          heroku_email: ${{secrets.EMAIL}}
+        if: ${{ contains(join(github.event.commits.*.message, '#deploy')) && github.event_name == 'push' }}
+  tag_release:
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+        if: ${{ contains(join(github.event.commits.*.message, '#deploy')) && github.event_name == 'push' }}
