@@ -26,13 +26,13 @@ jobs:
         run: npm install && cd tooter-frontend && npm install
       - name: build
         run: npm run build:ui
-      - name: deploy to heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "tooter-app"
-          heroku_email: ${{secrets.EMAIL}}
-        if: ${{ !(contains(join(github.event.commits.*.message), '#skip')) && github.event_name == 'push' }}
+     # - name: deploy to heroku
+     #   uses: akhileshns/heroku-deploy@v3.12.12
+     #   with:
+     #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+     #     heroku_app_name: "tooter-app"
+     #     heroku_email: ${{secrets.EMAIL}}
+     #   if: ${{ !(contains(join(github.event.commits.*.message), '#skip')) && github.event_name == 'push' }}
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
