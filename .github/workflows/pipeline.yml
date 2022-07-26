@@ -32,7 +32,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "tooter-app"
           heroku_email: ${{secrets.EMAIL}}
-        if: ${{ contains(join(github.event.commits.*.message, '#deploy')) && github.event_name == 'push' }}
+        if: ${{ (contains(join(github.event.commits.*.message, '#deploy'))) && github.event_name == 'push' }}
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
@@ -45,4 +45,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-        if: ${{ contains(join(github.event.commits.*.message, '#deploy')) && github.event_name == 'push' }}
+        if: ${{ (contains(join(github.event.commits.*.message, '#deploy'))) && github.event_name == 'push' }}
