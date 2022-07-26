@@ -6,22 +6,20 @@ const { SubscriptionServer } = require("subscriptions-transport-ws");
 const express = require("express");
 const http = require("http");
 const mongoose = require("mongoose");
-require('dotenv').config()
+const config = require('./utils/config');
 
 const User = require("./models/user");
-const MONGODB_URI = process.env.MONGODB_URI
   
 const jwt = require("jsonwebtoken");
 
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 
-const JWT_SECRET = process.env.JWT_SECRET
 
-console.log("connecting to", MONGODB_URI);
+console.log("connecting to", config.MONGODB_URI);
 
 mongoose
-  .connect(MONGODB_URI)
+  .connect(config.MONGODB_URI)
   .then(() => {
     console.log("connected to MongoDB");
   })
@@ -56,7 +54,7 @@ const start = async () => {
       try {
       const auth = req ? req.headers.authorization : null;
       if (auth && auth.toLowerCase().startsWith("bearer ")) {
-        const decodedToken = jwt.verify(auth.substring(7), JWT_SECRET);
+        const decodedToken = jwt.verify(auth.substring(7), config.SECRET);
         const currentUser = await User.findById(decodedToken.id);
         return { currentUser };
       }
@@ -87,10 +85,9 @@ const start = async () => {
     path: "/",
   });
 
-  const PORT = process.env.PORT || 4000;
 
-  httpServer.listen(PORT, () =>
-    console.log(`Server is now running on http://localhost:${PORT}`)
+  httpServer.listen(config.PORT, () =>
+    console.log(`Server is now running on http://localhost:${config.PORT}`)
   );
 };
 

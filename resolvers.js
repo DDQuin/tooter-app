@@ -1,6 +1,6 @@
 const { UserInputError, AuthenticationError, ValidationError } = require("apollo-server");
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = process.env.JWT_SECRET;
+const config = require('./utils/config');
 const { PubSub } = require("graphql-subscriptions");
 const Toot = require("./models/toot");
 const User = require("./models/user");
@@ -260,7 +260,7 @@ const resolvers = {
         id: user._id,
       };
 
-      return { value: jwt.sign(userForToken, JWT_SECRET) };
+      return { value: jwt.sign(userForToken, config.SECRET) };
     },
   },
 };
