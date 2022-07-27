@@ -32,10 +32,10 @@ axios
             };
         });
 
-        const httpLink = new HttpLink({ uri: `http://localhost:${port}` });
+        const httpLink = new HttpLink({ uri: `https://tooter-app.herokuapp.com/ ` });
 
         const wsLink = new WebSocketLink({
-            uri: `ws://localhost:${port}/graphql`,
+            uri: `https://tooter-app.herokuapp.com/graphql`,
             options: {
                 reconnect: true,
             },
