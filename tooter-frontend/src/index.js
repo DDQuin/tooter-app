@@ -35,7 +35,7 @@ axios
         const httpLink = new HttpLink({ uri: `https://tooter-app.herokuapp.com/ ` });
 
         const wsLink = new WebSocketLink({
-            uri: `https://tooter-app.herokuapp.com/graphql`,
+            uri: `ws://tooter-app.herokuapp.com/graphql`,
             options: {
                 reconnect: true,
             },
