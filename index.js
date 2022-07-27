@@ -5,6 +5,7 @@ const { execute, subscribe } = require("graphql");
 const { SubscriptionServer } = require("subscriptions-transport-ws");
 const express = require("express");
 const http = require("http");
+const testRouter = require('./routes');
 const mongoose = require("mongoose");
 const config = require('./utils/config');
 
@@ -32,6 +33,7 @@ mongoose
 const start = async () => {
   const app = express();
   app.use(express.static('build'))
+  app.use('/api/test', testRouter);
   const httpServer = http.createServer(app);
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
