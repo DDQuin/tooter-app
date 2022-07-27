@@ -3,8 +3,7 @@ import Toot from "./Toot";
 
 const TootList = () => {
 
-    //const { toots } = useToots();
-    const toots = undefined;
+    const { toots } = useToots();
     if (!toots) {
         return (
             <div>
