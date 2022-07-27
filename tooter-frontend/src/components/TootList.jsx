@@ -8,7 +8,7 @@ const TootList = () => {
     const { toots } = useToots();
     useEffect(() => {
         axios
-            .get('http://localhost:4000/api/test/test')
+            .get('/api/test/test')
             .then(response => {
                 console.log(response)
             })
