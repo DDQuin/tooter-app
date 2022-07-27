@@ -29,7 +29,7 @@ axios
             }
         })
 
-        const httpLink = new HttpLink({ uri: 'https://tooter-app.herokuapp.com/' })
+        const httpLink = new HttpLink({ uri: `http://localhost:${port}` })
 
         const client = new ApolloClient({
             cache: new InMemoryCache(),
