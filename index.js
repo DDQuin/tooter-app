@@ -17,8 +17,6 @@ const resolvers = require("./resolvers");
 
 
 console.log("connecting to  ", config.MONGODB_URI);
-console.log("connecting to  ", config.MONGODB_URI);
-console.log("connecting to  ", config.MONGODB_URI);
 
 mongoose
   .connect(config.MONGODB_URI)
@@ -89,7 +87,7 @@ const start = async () => {
 
 
   httpServer.listen(config.PORT, () =>
-    console.log(`Server is now running on http://localhost:${config.PORT}`)
+    console.log(`Servers is now running on http://localhost:${config.PORT}`)
   );
 };
 

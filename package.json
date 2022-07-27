@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=production node index.js",
     "build:ui": "rm -rf build && cd tooter-frontend && npm run build && cp -r build ..",
+    "build:full": "rm -rf build && cd tooter-frontend && npm install && npm run build && cp -r build ..",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "start:test": "cross-env NODE_ENV=test node index.js"
   },
