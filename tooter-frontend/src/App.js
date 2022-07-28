@@ -3,8 +3,7 @@ import TootPage from "./pages/TootPage";
 import AboutPage from "./pages/AboutPage";
 import Footer from "./components/Footer";
 import {
-    BrowserRouter as Router,
-    Routes, Route, Link
+    BrowserRouter as Router, Route,
 } from "react-router-dom"
 
 const App = () => {
