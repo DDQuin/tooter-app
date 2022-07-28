@@ -2,19 +2,25 @@
     display: flex;
     background: aqua;
     height: 60px;
-    width: 500px;
     justify-content: space-around;
     align-items: center;
+    width: 500px;
     border-radius: 10px;
     box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
 }
 
 .link {
     font-size: 24px;
+    color: white;
     font-weight: 700;
+    text-decoration: none;
 }
+
 
 .link:hover {
     font-size: 28px;
+    text-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+    color: white;
     font-weight: 700;
+    text-decoration: none;
 }
