@@ -1,12 +1,26 @@
 import Navbar from "./components/Navbar";
-import TootList from "./components/TootList";
+import TootPage from "./pages/TootPage";
+import AboutPage from "./pages/AboutPage";
+import Footer from "./components/Footer";
+import {
+    BrowserRouter as Router,
+    Routes, Route, Link
+} from "react-router-dom"
 
 const App = () => {
   return (
-    <div className="App">
-        <Navbar />
-        <TootList/>
-    </div>
+      <Router>
+          <div className="App">
+              <Navbar />
+              <Routes>
+                  <Route path="/" element={<TootPage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/*" element={<TootPage />} />
+              </Routes>
+              <Footer />
+          </div>
+      </Router>
+
   );
 }
 
