@@ -5,8 +5,6 @@ const Toot = ({toot}) => {
     let avatar = toot.user.avatar
     if (!avatar) {
         avatar = "/person.png"
-    } else {
-        avatar= "https://image.tmdb.org/t/p/w500/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg"
     }
 
     return (
