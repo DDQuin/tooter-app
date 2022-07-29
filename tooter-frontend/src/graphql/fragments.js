@@ -5,7 +5,9 @@ export const TOOT_DETAILS = gql`
     id
     createdAt
     user {
-      username  
+      username
+      name
+      avatar  
     }
     comments {
       content  

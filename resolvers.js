@@ -13,7 +13,7 @@ const pubsub = new PubSub();
 const resolvers = {
   Query: {
     allToots: async (root, args) => {
-      return Toot.find({});
+      return Toot.find({}).sort({createdAt: "desc"});
     },
     allUsers: async (root, args) => {
       return User.find({});
