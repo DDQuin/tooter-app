@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+
+    padding: 20px 20px;
+    background: linear-gradient(to bottom, #0FCDE7 0, #0FCDE7 40px, white 0% , white 50%);
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+    
+}
+
+.topPart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.name {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 15px;
+}
+
+.username {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 15px;
+
+    color: #ABA6A6;
+}
+
+.date {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 15px;
+
+    color: #000000;
+}
+
+.content {
+    margin-top: 15px;
+}
+
+.interaction {
+    display: flex;
+    margin-top: auto;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.comment:hover {
+    outline-offset: 2px;
+    outline: #0FCDE7 2px auto;
+
+}
+
+.like:hover {
+    outline-offset: 0px;
+    outline: #0FCDE7 2px auto;
+}
+
+.likeCon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentCon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.button {
+    all: unset;
+    cursor: pointer;
+}
+
+button:hover {
+
+}
+
+
