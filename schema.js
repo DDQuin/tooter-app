@@ -27,6 +27,7 @@ type Query {
   allComments: [Comment!]!
   allLikes: [Like!]!
   me: User
+  getUser(userId: ID!): User
 }
 
 type User {

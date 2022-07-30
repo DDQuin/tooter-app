@@ -27,6 +27,13 @@ const resolvers = {
     me: (root, args, context) => {
       return context.currentUser;
     },
+    getUser: async (root, args) => {
+      const user = await User.findById(args.userId)
+      if (!user) {
+        throw new UserInputError("User id doesnt exist!")
+      }
+      return user
+    },
   },
   Toot: {
     user: async (root) => await User.findById(root.user),
