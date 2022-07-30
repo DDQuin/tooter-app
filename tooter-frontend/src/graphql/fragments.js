@@ -7,7 +7,8 @@ export const TOOT_DETAILS = gql`
     user {
       username
       name
-      avatar  
+      avatar
+      id
     }
     comments {
       content  
@@ -18,4 +19,13 @@ export const TOOT_DETAILS = gql`
       }  
     }
   }
+`
+
+export const USER_SIMPLE = gql`
+    fragment UserSimpleDetails on User {
+        username
+        avatar
+        name
+        description
+    }
 `

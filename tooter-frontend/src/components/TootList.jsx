@@ -1,9 +1,7 @@
-import useToots from "../hooks/useToots";
 import Toot from "./Toot";
 import styles from "./TootList.module.css"
 
-const TootList = () => {
-    const { toots } = useToots();
+const TootList = ({toots}) => {
     if (!toots) {
         return (
             <div>

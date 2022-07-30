@@ -58,7 +58,7 @@ const resolvers = {
   },
   User: {
     toots: async (root) => {
-      const userWithToots = await User.findById(root.id).populate("toots");
+      const userWithToots = await User.findById(root.id).populate({path:'toots',options:{ sort:{createdAt : "desc"}}});
       const toots = userWithToots.toots
       return toots;
     },

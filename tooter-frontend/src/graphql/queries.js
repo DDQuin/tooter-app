@@ -9,3 +9,18 @@ export const GET_ALL_TOOTS = gql`
     }
     ${TOOT_DETAILS}   
 `
+
+export const GET_USER = gql`
+   query GetUser($userId: ID!) {
+      getUser(userId: $userId) {
+        username
+        avatar
+        name
+        description
+        toots {
+            ...TootDetails
+        }
+  }
+}
+    ${TOOT_DETAILS}   
+`
