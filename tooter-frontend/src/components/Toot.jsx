@@ -3,7 +3,7 @@ import dateString from "../utils/dateString";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 
-const Toot = ({toot}) => {
+const Toot = ({toot, showLink}) => {
     let avatar = toot.user.avatar
     if (!avatar) {
         avatar = "/images/person.png"
@@ -17,7 +17,10 @@ const Toot = ({toot}) => {
             <div className={styles.topPart}>
                 <img className={styles.avatar} src={avatar} alt={"avatar"}/>
                 <span className={styles.name}>{toot.user.name}</span>
-                <Link to={`/users/${toot.user.id}`} className={styles.username}>@{toot.user.username}</Link>
+                {showLink ?
+                    <Link to={`/users/${toot.user.id}`} className={styles.username}>@{toot.user.username}</Link> :
+                    <span to={`/users/${toot.user.id}`} className={styles.username}>@{toot.user.username}</span>
+                }
                 <span className={styles.date}>{dateString(toot.createdAt)}</span>
             </div>
             <p className={styles.content}>

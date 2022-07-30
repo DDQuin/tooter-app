@@ -1,7 +1,7 @@
 import Toot from "./Toot";
 import styles from "./TootList.module.css"
 
-const TootList = ({toots}) => {
+const TootList = ({toots, showLink}) => {
     if (!toots) {
         return (
             <div>
@@ -11,7 +11,7 @@ const TootList = ({toots}) => {
     }
     return (
         <div className={styles.container}>
-            {toots.map(toot => <Toot key={toot.id} toot={toot}/>)}
+            {toots.map(toot => <Toot key={toot.id} toot={toot} showLink={showLink}/>)}
         </div>
     )
 

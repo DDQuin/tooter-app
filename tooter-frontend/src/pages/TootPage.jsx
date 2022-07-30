@@ -7,7 +7,7 @@ const TootPage = () => {
     return (
         <div className={styles.container}>
             <h1>All Toots</h1>
-            <TootList toots={toots}/>
+            <TootList toots={toots} showLink={true}/>
         </div>
     );
 }
