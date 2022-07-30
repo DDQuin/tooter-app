@@ -62,16 +62,20 @@
     border-radius: 50%;
 }
 
-.comment:hover {
-    outline-offset: 2px;
-    outline: #0FCDE7 2px auto;
 
+
+.like {
+    width: 30px;
+    height: 30px;
 }
 
-.like:hover {
-    outline-offset: 0px;
-    outline: #0FCDE7 2px auto;
+
+.comment {
+    width: 25px;
+    height: 25px;
 }
+
+
 
 .likeCon {
     display: flex;

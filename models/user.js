@@ -18,6 +18,9 @@ const schema = new mongoose.Schema({
   avatar: {
     type: String,
   },
+  description: {
+    type: String,
+  },
   toots: [
     {
       type: mongoose.Schema.Types.ObjectId,

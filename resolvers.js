@@ -182,6 +182,17 @@ const resolvers = {
       return currentUser
       
     },
+    setDescription: async (root, args, context) => {
+      const { description } = args
+      const currentUser = context.currentUser;
+      if (!currentUser) {
+        throw new AuthenticationError("not authenticated");
+      }
+      currentUser.description = description
+      await currentUser.save()
+      return currentUser
+
+    },
     setName: async (root, args, context) => {
       const { name } = args
       const currentUser = context.currentUser;

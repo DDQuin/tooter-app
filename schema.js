@@ -39,6 +39,7 @@ type User {
   comments: [Comment!]!
   likes: [Like!]!
   name: String!
+  description: String
 }
 
 type Token {
@@ -54,6 +55,7 @@ type Mutation {
   likeToot(tootId: ID!): ID
   login(username: String!, password: String!): Token
   setAvatar(url: String!): User
+  setDescription(description: String!): User
   setName(name: String!): User
   followUser(id: ID!): User
 }
