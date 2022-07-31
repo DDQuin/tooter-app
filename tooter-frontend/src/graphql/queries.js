@@ -17,6 +17,11 @@ export const GET_USER = gql`
         avatar
         name
         description
+        likes {
+            toot {
+             ...TootDetails
+            }
+        }
         toots {
             ...TootDetails
         }
