@@ -24,8 +24,8 @@ const authLink = setContext((_, {headers}) => {
 })
 
 // for deploy
-const httpLink = new HttpLink({ uri: `https://tooter-app.herokuapp.com/` })
-//const httpLink = new HttpLink({uri: `http://localhost:4000`})
+//const httpLink = new HttpLink({ uri: `https://tooter-app.herokuapp.com/` })
+const httpLink = new HttpLink({uri: `http://localhost:4000`})
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
