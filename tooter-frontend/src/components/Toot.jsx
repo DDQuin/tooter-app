@@ -2,12 +2,9 @@ import styles from "./Toot.module.css"
 import dateString from "../utils/dateString";
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import Avatar from "./Avatar";
 
 const Toot = ({toot, showLink}) => {
-    let avatar = toot.user.avatar
-    if (!avatar) {
-        avatar = "/images/person.png"
-    }
     let [likeHover , setLikeHover] = useState(false)
     let likeUrl = likeHover ? "/images/like_outline.png" : "/images/like.png"
     let [commentHover , setCommentHover] = useState(false)
@@ -15,7 +12,7 @@ const Toot = ({toot, showLink}) => {
     return (
         <div className={styles.container}>
             <div className={styles.topPart}>
-                <img className={styles.avatar} src={avatar} alt={"avatar"}/>
+                <Avatar avatar={toot.user.avatar}/>
                 <span className={styles.name}>{toot.user.name}</span>
                 {showLink ?
                     <Link to={`/users/${toot.user.id}`} className={styles.username}>@{toot.user.username}</Link> :

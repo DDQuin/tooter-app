@@ -17,6 +17,20 @@ export const GET_USER = gql`
         avatar
         name
         description
+        followedBy {
+            id
+            username
+            name
+            avatar
+            description
+         }
+          following {
+            username
+            name
+            avatar
+            id
+            description
+        }
         likes {
             toot {
              ...TootDetails

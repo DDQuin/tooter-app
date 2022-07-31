@@ -50,11 +50,6 @@
     align-items: center;
 }
 
-.avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-}
 
 
 
@@ -69,6 +64,30 @@
     font-size: 16px;
     line-height: 19px;
     color: #FFF3F3;
+}
+
+.following {
+    all: unset;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    color: #545252;
+}
+
+.followedBy {
+    all: unset;
+    cursor: pointer;
+    font-style: italic;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 19px;
+    color: #545252;
 }
 
 .follow:hover {
