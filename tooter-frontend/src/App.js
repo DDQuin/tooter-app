@@ -6,6 +6,7 @@ import {
     BrowserRouter as Router, Route, Routes, Navigate
 } from "react-router-dom"
 import UserPage from "./pages/UserPage";
+import CommentsPage from "./pages/CommentsPage";
 
 const App = () => {
 
@@ -17,6 +18,7 @@ const App = () => {
                     <Route path="/" element=<Navigate replace to="/toots"/> />
                     <Route path="/toots" element={<TootPage/>}/>
                     <Route path="/about" element={<AboutPage/>}/>
+                    <Route path="/toot/:id" element={<CommentsPage/>}/>
                     <Route path="/users/:id" element={<UserPage/>}/>
                     <Route path="/*" element=<Navigate replace to="/toots"/> />
                 </Routes>

@@ -34,11 +34,18 @@ const resolvers = {
       }
       return user
     },
+    getToot: async (root, args) => {
+      const toot = await Toot.findById(args.tootId)
+      if (!toot) {
+        throw new UserInputError("Toot id doesnt exist!")
+      }
+      return toot
+    },
   },
   Toot: {
     user: async (root) => await User.findById(root.user),
     comments: async (root) => {
-      const tootWithComments = await Toot.findById(root.id).populate("comments");
+      const tootWithComments = await Toot.findById(root.id).populate({path:'comments',options:{ sort:{createdAt : "desc"}}});
       const comments = tootWithComments.comments
       return comments;
     },
@@ -63,7 +70,7 @@ const resolvers = {
       return toots;
     },
     comments: async (root) => {
-      const userWithComments = await User.findById(root.id).populate("comments");
+      const userWithComments = await User.findById(root.id).populate({path:'comments',options:{ sort:{createdAt : "desc"}}});
       const comments = userWithComments.comments
       return comments;
     },

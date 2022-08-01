@@ -1,7 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    width: 30vw;
+    flex-wrap: wrap;
     padding: 10px 20px;
     background: #FFFFFF;
     border: 1px solid #BBB5B5;

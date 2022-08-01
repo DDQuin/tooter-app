@@ -31,9 +31,11 @@ const Toot = ({toot, showLink}) => {
                     {toot.likes.length}
                 </div>
                 <div className={styles.commentCon}>
+                    <Link to={`/toot/${toot.id}`} className={styles.username}>
                     <button className={styles.button}>
                         <img alt={"comment"} className={styles.comment} src={commentUrl} onMouseOver={() => setCommentHover(true)} onMouseLeave={() => setCommentHover(false)}/>
                     </button>
+                    </Link>
                     {toot.comments.length}
                 </div>
             </div>

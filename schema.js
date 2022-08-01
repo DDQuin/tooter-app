@@ -13,7 +13,8 @@ type Toot {
 type Comment {
   content: String!
   user: User!
-  toot: Toot! 
+  toot: Toot!
+  createdAt: String!
 }
 
 type Like {
@@ -28,6 +29,7 @@ type Query {
   allLikes: [Like!]!
   me: User
   getUser(userId: ID!): User
+  getToot(tootId: ID!): Toot
 }
 
 type User {

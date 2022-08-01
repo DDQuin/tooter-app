@@ -7,6 +7,7 @@ import useUser from "../hooks/useUser";
 import UserCard from "../components/UserCard";
 import {useState} from "react";
 import TypeSelector from "../components/TypeSelector";
+import CommentsList from "../components/CommentsList";
 
 const UserPage = () => {
     const { id } = useParams()
@@ -26,12 +27,21 @@ const UserPage = () => {
             </div>
         )
     }
-    let toots = type === "all" ? user.toots : user.likes.map(like => like.toot)
+    let toots = null
+    let comments = null
+    if (type === "all") {
+        toots = user.toots
+    } else if (type === "likes") {
+        toots = user.likes.map(like => like.toot)
+    } else if (type === "comments") {
+        comments = user.comments
+    }
     return (
         <div className={styles.container}>
             <UserCard user={user}/>
             <TypeSelector type={type} setType={setType}/>
-            <TootList toots={toots} showLink={false}/>
+            {toots && <TootList toots={toots} showLink={false}/>}
+            {comments && <CommentsList comments={comments} tootLinkShown={true} userLinkShown={false}/>}
         </div>
     );
 }
