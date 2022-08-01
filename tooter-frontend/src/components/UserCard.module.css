@@ -79,6 +79,12 @@
     color: #545252;
 }
 
+.following:hover {
+    background: #adadad;
+    border-radius: 10px;
+
+}
+
 .followedBy {
     all: unset;
     cursor: pointer;
@@ -89,6 +95,12 @@
     font-size: 14px;
     line-height: 19px;
     color: #545252;
+}
+
+.followedBy:hover {
+    background: #adadad;
+    border-radius: 10px;
+
 }
 
 .follow:hover {

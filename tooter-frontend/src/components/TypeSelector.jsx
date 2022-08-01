@@ -16,7 +16,11 @@ const TypeSelector = ({type, setType}) => {
 const TypeButton = ({name, isClicked, handleClick}) => {
     const typeStyle = isClicked ? styles.buttonTypeClicked: styles.buttonType
     return (
-        <button className={typeStyle} onClick={handleClick}>{name}</button>
+        <div >
+            <button className={typeStyle} onClick={handleClick}>{name}
+                {isClicked && <hr className={styles.line}></hr>}
+            </button>
+        </div>
     )
 }
 

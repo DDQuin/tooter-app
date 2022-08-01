@@ -25,11 +25,17 @@
 
 }
 
+.line {
+    border: 2px solid #12c9c1;
+    border-radius: 20px;
+
+}
+
 .buttonTypeClicked {
     all: unset;
     cursor: pointer;
     padding: 10px 20px;
-    background: #e8e8e8;
+
     border-radius: 10px;
 }
 
