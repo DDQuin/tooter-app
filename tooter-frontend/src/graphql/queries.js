@@ -20,9 +20,36 @@ export const GET_TOOT = gql`
     ${TOOT_COMMENT_DETAILS}   
 `
 
+export const ME = gql`
+ query Me {
+  me {
+    username
+    id
+    name
+    avatar
+    description
+  toots {
+    content
+    createdAt
+  }
+  following {
+ 
+            id
+        }
+   likes {
+            toot {
+             ...TootDetails
+            }
+        }   
+  }
+}
+${TOOT_DETAILS}   
+`
+
 export const GET_USER = gql`
    query GetUser($userId: ID!) {
       getUser(userId: $userId) {
+        id
         username
         avatar
         name

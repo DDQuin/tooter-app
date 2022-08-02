@@ -57,3 +57,23 @@
     all: unset;
     cursor: pointer;
 }
+
+.button {
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    background: none;
+    border: none;
+}
+
+.button:hover {
+    font-size: 28px;
+    filter: brightness(0.95);
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+

@@ -1,0 +1,35 @@
+.errorText {
+    margin-top: 5px;
+    color: red;
+}
+
+.input {
+    background: #ffffff;
+    border:1px solid black;
+    border-radius: 10px;
+    padding: 5px 15px;
+    color: #000000;
+    height: 30px;
+    width: 10vw;
+    font-size: 18px;
+}
+
+.input:focus {
+    border:1px solid #03d5c2;
+}
+
+.inputWrong {
+
+    background: #ffffff;
+    border:1px solid red;
+    border-radius: 10px;
+    padding: 5px 15px;
+    color: #000000;
+    height: 30px;
+    font-size: 18px;
+
+}
+
+.inputWrong:active {
+    border:1px solid #03d5c2;
+}

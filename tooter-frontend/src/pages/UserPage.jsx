@@ -8,10 +8,12 @@ import UserCard from "../components/UserCard";
 import {useState} from "react";
 import TypeSelector from "../components/TypeSelector";
 import CommentsList from "../components/CommentsList";
+import useMe from "../hooks/useMe";
 
 const UserPage = () => {
     const { id } = useParams()
     const {user, loading} = useUser(id)
+    const {me} = useMe()
     const [type, setType] = useState("all")
     if (loading) {
         return (
@@ -38,9 +40,9 @@ const UserPage = () => {
     }
     return (
         <div className={styles.container}>
-            <UserCard user={user}/>
+            <UserCard user={user} curUser={me}/>
             <TypeSelector type={type} setType={setType}/>
-            {toots && <TootList toots={toots} showLink={false}/>}
+            {toots && <TootList toots={toots} showLink={false} curUser={me}/>}
             {comments && <CommentsList comments={comments} tootLinkShown={true} userLinkShown={false}/>}
         </div>
     );

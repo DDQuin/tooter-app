@@ -7,6 +7,8 @@ import {
 } from "react-router-dom"
 import UserPage from "./pages/UserPage";
 import CommentsPage from "./pages/CommentsPage";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
 
 const App = () => {
 
@@ -18,6 +20,8 @@ const App = () => {
                     <Route path="/" element=<Navigate replace to="/toots"/> />
                     <Route path="/toots" element={<TootPage/>}/>
                     <Route path="/about" element={<AboutPage/>}/>
+                    <Route path="/signin" element={<SignInPage/>}/>
+                    <Route path="/signup" element={<SignUpPage/>}/>
                     <Route path="/toot/:id" element={<CommentsPage/>}/>
                     <Route path="/users/:id" element={<UserPage/>}/>
                     <Route path="/*" element=<Navigate replace to="/toots"/> />
