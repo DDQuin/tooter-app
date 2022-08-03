@@ -20,6 +20,8 @@ const schema = new mongoose.Schema({
   },
   description: {
     type: String,
+    minlength: 3,
+    maxLength: 200,
   },
   toots: [
     {

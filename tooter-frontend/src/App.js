@@ -9,6 +9,7 @@ import UserPage from "./pages/UserPage";
 import CommentsPage from "./pages/CommentsPage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
+import CurrentUserPage from "./pages/CurrentUserPage";
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element=<Navigate replace to="/toots"/> />
                     <Route path="/toots" element={<TootPage/>}/>
+                    <Route path="/me" element={<CurrentUserPage/>}/>
                     <Route path="/about" element={<AboutPage/>}/>
                     <Route path="/signin" element={<SignInPage/>}/>
                     <Route path="/signup" element={<SignUpPage/>}/>

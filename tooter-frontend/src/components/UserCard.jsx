@@ -34,9 +34,9 @@ const UserCard = ({user, curUser}) => {
                 <span className={styles.name}>{user.name}</span>
                 <span className={styles.username}>@{user.username}</span>
             </div>
-            <p className={styles.content}>
+            <div className={styles.content}>
                 {user.description ? user.description : "The user does not have a description set!"}
-            </p>
+            </div>
             <div className={styles.interaction}>
                 {showFollow && <button className={styles.follow} onClick={handleFollow}>{isFollowedByCurUser ? "Followed" : "Follow"}</button>}
                 {isPopupShown && <Popup closePopup={() => setShownPopup(false)}><span>You are not logged in!</span></Popup>}

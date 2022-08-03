@@ -15,3 +15,19 @@ mutation CreateUser($username: String!, $password: String!, $name: String!) {
   }
 }
 `
+
+export const SET_DESC = gql`
+    mutation SetDescription($description: String!) {
+  setDescription(description: $description) {
+    description
+  }
+}    
+`
+
+export const SET_AVATAR = gql`
+    mutation SetAvatar($url: String!) {
+      setAvatar(url: $url) {
+        username
+      }
+    }    
+`

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import {gql} from '@apollo/client';
 import {TOOT_DETAILS} from "./fragments";
 import {TOOT_COMMENT_DETAILS} from "./fragments";
 
@@ -23,24 +23,49 @@ export const GET_TOOT = gql`
 export const ME = gql`
  query Me {
   me {
-    username
     id
-    name
-    avatar
-    description
-  toots {
-    content
-    createdAt
-  }
-  following {
- 
-            id
+        username
+        avatar
+        name
+        description
+        comments {
+      content
+      createdAt
+      user {
+        username
+        id
+        avatar
+        name
+      }
+      toot {
+        user {
+          username
         }
-   likes {
+        id
+      }
+    }
+        followedBy {
+            id
+            username
+            name
+            avatar
+            description
+         }
+          following {
+            username
+            name
+            avatar
+            id
+            description
+        }
+        likes {
             toot {
              ...TootDetails
             }
-        }   
+        }
+        toots {
+            ...TootDetails
+        }
   }
 }
 ${TOOT_DETAILS}   

@@ -6,8 +6,11 @@ const Avatar = ({avatar, width, height}) => {
     }
     if (!width) width = 48
     if (!height) height = 48
+    const defaultImage = (ev) => {
+        ev.target.src = '/images/person.png'
+    }
     return (
-        <img className={styles.avatar} src={avatar} alt={"avatar"} width={width} height={height}/>
+        <img onError={defaultImage} className={styles.avatar} src={avatar} alt={"avatar"} width={width} height={height}/>
     )
 }
 

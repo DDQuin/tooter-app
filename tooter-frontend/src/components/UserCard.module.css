@@ -41,6 +41,10 @@
 
 .content {
     align-self: center;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    flex-wrap: wrap;
 }
 
 .interaction {
