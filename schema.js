@@ -23,7 +23,7 @@ type Like {
 }
 
 type Query {
-  allToots: [Toot!]!
+  allToots(search: String): [Toot!]!
   allUsers: [User!]!
   allComments: [Comment!]!
   allLikes: [Like!]!

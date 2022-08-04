@@ -13,7 +13,11 @@ const pubsub = new PubSub();
 const resolvers = {
   Query: {
     allToots: async (root, args) => {
-      return Toot.find({}).sort({createdAt: "desc"});
+      if (args.search) {
+        return Toot.find({content: { $regex: '.*' + args.search + '.*' , $options: 'i'}}).sort({createdAt: "desc"});
+      } else {
+        return Toot.find({}).sort({createdAt: "desc"});
+      }
     },
     allUsers: async (root, args) => {
       return User.find({});
