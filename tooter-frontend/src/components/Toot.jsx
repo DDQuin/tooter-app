@@ -4,10 +4,12 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import Avatar from "./Avatar";
 import Popup from "./Popup";
+import useLikeToot from "../hooks/useLikeToot";
 
 const Toot = ({toot, showLink, curUser}) => {
     let [likeHover , setLikeHover] = useState(false)
     let likeUrl = likeHover ? "/images/like_outline.png" : "/images/like.png"
+    const [likeToot] = useLikeToot()
     if (curUser) {
         for (let like of curUser.likes) {
             if (like.toot.id === toot.id) {
@@ -21,7 +23,10 @@ const Toot = ({toot, showLink, curUser}) => {
     const handleLike = () => {
         if (!curUser) {
             setShowPopup(true)
+        } else {
+            likeToot(toot.id)
         }
+
     }
     return (
         <div className={styles.container}>

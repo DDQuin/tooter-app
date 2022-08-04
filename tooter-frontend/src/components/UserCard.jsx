@@ -3,15 +3,19 @@ import {useState} from "react";
 import FollowPopup from "./FollowPopup";
 import Avatar from "./Avatar";
 import Popup from "./Popup";
+import useFollowUser from "../hooks/useFollowUser";
 
 
 
 const UserCard = ({user, curUser}) => {
     const [popupType, setPopupType] = useState("off")
     const [isPopupShown, setShownPopup ] = useState(false)
+    const [followUser] = useFollowUser()
     const handleFollow = () => {
         if (!curUser) {
             setShownPopup(true)
+        } else {
+            followUser(user.id)
         }
     }
     let isFollowedByCurUser = false

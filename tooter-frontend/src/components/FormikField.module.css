@@ -28,7 +28,7 @@
 textarea {
     /* will prevent resizing horizontally */
 
-    max-width: 15vw;
+    max-width: 25vw;
     min-width: 5vw;
 }
 

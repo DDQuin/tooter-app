@@ -23,7 +23,7 @@ const SetDescForm = ({handleClick, initalDesc}) => (
         >
             {({ isSubmitting }) => (
                 <Form className={styles.form}>
-                    <FormikField name="description" placeholder="Description" multi={true}  />
+                    <FormikField name="description" placeholder="Description" multi={true} long={true}  />
                     <button type="submit" disabled={isSubmitting} className={styles.submit}>Set Description</button>
                 </Form>
             )}

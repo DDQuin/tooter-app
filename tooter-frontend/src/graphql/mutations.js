@@ -31,3 +31,17 @@ export const SET_AVATAR = gql`
       }
     }    
 `
+
+export const LIKE_TOOT = gql`
+    mutation LikeToot($tootId: ID!) {
+        likeToot(tootId: $tootId)
+    }
+`
+
+export const FOLLOW_USER = gql`
+    mutation FollowUser($id: ID!) {
+  followUser(id: $id) {
+    username
+  }
+}
+`
