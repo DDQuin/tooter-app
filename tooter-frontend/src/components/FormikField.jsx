@@ -6,7 +6,7 @@ const FormikField = ({ name, long, multi, ...props }) => {
     const showError = meta.touched && meta.error;
     let style = long ? styles.inputLong : styles.input
     if (showError) {
-        style = styles.inputWrong
+        style = long ? styles.inputLongWrong: styles.inputWrong
     }
     const defaultProps = {
         type: "text",
@@ -17,7 +17,7 @@ const FormikField = ({ name, long, multi, ...props }) => {
     }
     return (
         <>
-            {multi ? <textarea {...defaultProps} {...props} maxlength="200"/> : <input {...defaultProps} {...props}/>}
+            {multi ? <textarea {...defaultProps} {...props} maxlength="200" style={{height: "100px"}}/> : <input {...defaultProps} {...props}/>}
             {showError && <span className={styles.errorText}>{meta.error}</span>}
         </>
     );

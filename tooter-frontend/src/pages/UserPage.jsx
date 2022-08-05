@@ -42,7 +42,7 @@ const UserPage = () => {
         <div className={styles.container}>
             <UserCard user={user} curUser={me}/>
             <TypeSelector type={type} setType={setType}/>
-            {toots && <TootList toots={toots} showLink={false} curUser={me}/>}
+            {toots && <TootList toots={toots} showLink={type === "likes"} curUser={me}/>}
             {comments && <CommentsList comments={comments} tootLinkShown={true} userLinkShown={false}/>}
         </div>
     );

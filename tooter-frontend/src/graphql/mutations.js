@@ -45,3 +45,19 @@ export const FOLLOW_USER = gql`
   }
 }
 `
+
+export const ADD_TOOT = gql`
+    mutation AddToot($content: String!) {
+  addToot(content: $content) {
+    content
+  }
+}
+`
+
+export const ADD_COMMENT = gql`
+ mutation CreateComment($tootId: ID!, $content: String!) {
+  createComment(tootId: $tootId, content: $content) {
+    content
+  }
+}
+`

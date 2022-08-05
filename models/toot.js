@@ -6,6 +6,7 @@ const schema = new mongoose.Schema({
     required: true,
     unique: true,
     minlength: 2,
+    maxLength: 200,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

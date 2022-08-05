@@ -49,3 +49,17 @@ textarea {
 
 }
 
+.inputLongWrong {
+
+    background: #ffffff;
+    border:1px solid red;
+    border-radius: 10px;
+    padding: 5px 15px;
+    color: #000000;
+    width: 25vw;
+    height: 30px;
+    font-size: 18px;
+
+}
+
+
