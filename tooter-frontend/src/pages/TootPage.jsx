@@ -4,9 +4,11 @@ import useToots from "../hooks/useToots";
 import useMe from "../hooks/useMe";
 import CreateTootForm from "../components/CreateTootForm";
 import useCreateToot from "../hooks/useCreateToot";
+import {useState} from "react";
 
 const TootPage = () => {
-    const { toots } = useToots();
+    const [search, setSearch] = useState("")
+    const { toots } = useToots(search);
     const {me} = useMe()
     const [addToot] = useCreateToot();
     const handleClick = async (values) => {
@@ -19,10 +21,12 @@ const TootPage = () => {
             console.log(e);
         }
     }
+
     return (
         <div className={styles.container}>
             <h1>All Toots</h1>
             {me && <CreateTootForm handleClick={handleClick}/>}
+            <input className={styles.filterInput} onChange={(e) => setSearch(e.target.value)} placeholder={"Filter Toots"}/>
             <TootList toots={toots} showLink={true} curUser={me}/>
         </div>
     );

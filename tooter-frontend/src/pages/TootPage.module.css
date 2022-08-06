@@ -7,3 +7,14 @@
     align-items: center;
     gap: 20px;
 }
+
+.filterInput {
+    background: #ffffff;
+    border:1px solid black;
+    border-radius: 10px;
+    padding: 5px 15px;
+    color: #000000;
+    height: 30px;
+    width: 10vw;
+    font-size: 18px;
+}

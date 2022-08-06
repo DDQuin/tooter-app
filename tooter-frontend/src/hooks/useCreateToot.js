@@ -7,7 +7,7 @@ const useCreateToot = () => {
 
     const [mutate, result] = useMutation(ADD_TOOT, {
         refetchQueries: [
-            {query: ME}, {query: GET_TOOT}, {query: GET_ALL_TOOTS}, {query: GET_USER} // DocumentNode object parsed with gql
+            {query: ME}, {query: GET_TOOT}, {query: GET_ALL_TOOTS}, "AllToots", {query: GET_USER} // DocumentNode object parsed with gql
         ],
     });
 

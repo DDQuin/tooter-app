@@ -4,15 +4,18 @@ const AboutPage = () => {
     return (
         <div className={styles.container}>
             <h1 className={styles.header}>About</h1>
-            <p className={styles.header}>
-                In eu iaculis sapien. Nunc maximus leo at lacus suscipit, non condimentum libero semper.
-                Nam at aliquam neque. Sed rhoncus fermentum mattis. Nulla lobortis augue vitae odio molestie viverra.
-                Duis et urna et orci porttitor rhoncus. Integer nulla elit, volutpat et fringilla nec, pharetra nec lorem.
-                Etiam at dapibus lorem, sed tempus nisl. Phasellus quis risus tincidunt, pretium erat in, suscipit diam.
-                Integer posuere elementum ante vel molestie. Donec placerat suscipit magna sed mollis.
-                Pellentesque efficitur lacus non dolor dignissim tincidunt.
-                Vestibulum efficitur at enim ut feugiat. Donec scelerisque ac sapien in fermentum.
+            <p className={styles.par}>
+                This is a twitter clone made for educational purposes to put all the knowledge learned from the <a href={"https://fullstackopen.com/en/"}>FullStackOpen</a> course
+                into a project. More details of implementation on <a href={"https://github.com/DDQuin/tooter-app"}>GitHub</a>.
             </p>
+            <ul>
+                <li> You can sign up and set your avatar and description.</li>
+                <li>Create toots aswell as like other toots and comment on them.</li>
+                <li>View other user profiles and look at their likes and comments </li>
+                <li>Follow other users and view follow list.</li>
+                <li>Filter toots shown</li>
+            </ul>
+
         </div>
     );
 }

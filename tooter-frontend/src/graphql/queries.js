@@ -3,11 +3,11 @@ import {TOOT_DETAILS} from "./fragments";
 import {TOOT_COMMENT_DETAILS} from "./fragments";
 
 export const GET_ALL_TOOTS = gql`
-    query {
-      allToots {
-        ...TootDetails
-      }
-    }
+    query AllToots($search: String) {
+  allToots(search: $search) {
+    ...TootDetails
+  }
+}
     ${TOOT_DETAILS}   
 `
 

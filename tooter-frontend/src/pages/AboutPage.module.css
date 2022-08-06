@@ -1,4 +1,8 @@
 .header {
+    align-self: center;
+}
+
+.par {
 
 }
 
@@ -8,5 +12,6 @@
     max-width: 500px;
     margin-top: 60px;
     margin-bottom: 50px;
+    gap: 10px;
 
 }
