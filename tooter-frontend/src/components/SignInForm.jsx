@@ -27,8 +27,8 @@ const SignInForm = ({handleClick, isWrong}) => (
         >
             {({ isSubmitting }) => (
                 <Form className={styles.form}>
-                    <FormikField name="username" placeholder="Username"  />
-                    <FormikField name="password" placeholder="Password"  />
+                    <FormikField name="username" placeholder="Username"   />
+                    <FormikField name="password" placeholder="Password" type="password"  />
                     {isWrong && <span className={styles.error}>Wrong Details</span>}
                     <button type="submit" disabled={isSubmitting} className={styles.submit}>Sign In</button>
                 </Form>

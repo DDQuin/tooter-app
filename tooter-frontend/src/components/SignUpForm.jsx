@@ -39,8 +39,8 @@ const SignInForm = ({handleClick, isWrong}) => (
                 <Form className={styles.form}>
                     <FormikField name="username" placeholder="Username"  />
                     <FormikField name="name" placeholder="Name"  />
-                    <FormikField name="password" placeholder="Password"  />
-                    <FormikField name="passwordConfirmation" placeholder="Password Confirmation"  />
+                    <FormikField name="password" placeholder="Password" type="password"  />
+                    <FormikField name="passwordConfirmation" placeholder="Password Confirmation" type="password"  />
                     {isWrong && <span className={styles.error}>Wrong Details</span>}
                     <button type="submit" disabled={isSubmitting} className={styles.submit}>Sign Up</button>
                 </Form>
